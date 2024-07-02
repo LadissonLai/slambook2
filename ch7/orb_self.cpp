@@ -404,7 +404,7 @@ void BfMatch(const vector<DescType> &desc1, const vector<DescType> &desc2, vecto
       if (desc2[i2].empty()) continue;
       int distance = 0;
       for (int k = 0; k < 8; k++) {
-        distance += _mm_popcnt_u32(desc1[i1][k] ^ desc2[i2][k]);
+        distance += _mm_popcnt_u32(desc1[i1][k] ^ desc2[i2][k]); // ^表示按位异或，_mm_popcnt_u32 计算无符号数中1的个数
       }
       if (distance < d_max && distance < m.distance) {
         m.distance = distance;

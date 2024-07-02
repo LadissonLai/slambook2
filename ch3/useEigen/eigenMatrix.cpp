@@ -53,9 +53,9 @@ int main(int argc, char **argv) {
   vd_3d << 4, 5, 6;
 
   // 但是在Eigen里你不能混合两种不同类型的矩阵，像这样是错的
-  // Matrix<double, 2, 1> result_wrong_type = matrix_23 * v_3d;
+//   Matrix<double, 2, 1> result_wrong_type = matrix_23 * v_3d;
   // 应该显式转换
-  Matrix<double, 2, 1> result = matrix_23.cast<double>() * v_3d;
+  Matrix<double, 2, 1> result = matrix_23.cast<double>() * v_3d; // 这里matrix_2d就已经转成了double类型。
   cout << "[1,2,3;4,5,6]*[3,2,1]=" << result.transpose() << endl;
 
   Matrix<float, 2, 1> result2 = matrix_23 * vd_3d;
@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
 
   // 特征值
   // 实对称矩阵可以保证对角化成功
-  SelfAdjointEigenSolver<Matrix3d> eigen_solver(matrix_33.transpose() * matrix_33);
+  SelfAdjointEigenSolver<Matrix3d> eigen_solver(matrix_33.transpose() * matrix_33); //自共轭矩阵：共轭矩阵等于本身，就是实数矩阵。
   cout << "Eigen values = \n" << eigen_solver.eigenvalues() << endl;
   cout << "Eigen vectors = \n" << eigen_solver.eigenvectors() << endl;
 

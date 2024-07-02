@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.8)
+project(my_opencv_basic)
+
+find_package(OpenCV)
+if(OpenCV_NOT_FOUND)
+    message(STATUS "OpenCV is not found!!!!!!!!!!!!!!")
+endif(OpenCV_NOT_FOUND)
+include_directories(${OpenCV_INCLUDE_DIR})
+add_executable(main image_bianli.cpp)
+target_link_libraries(main ${OpenCV_LIBS})

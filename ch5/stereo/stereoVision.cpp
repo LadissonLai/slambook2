@@ -4,6 +4,7 @@
 #include <Eigen/Core>
 #include <pangolin/pangolin.h>
 #include <unistd.h>
+#include <chrono> // 计时
 
 using namespace std;
 using namespace Eigen;
@@ -81,6 +82,8 @@ void showPointCloud(const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &
         .SetBounds(0.0, 1.0, pangolin::Attach::Pix(175), 1.0, -1024.0f / 768.0f)
         .SetHandler(new pangolin::Handler3D(s_cam));
 
+    int count = 0;
+    std::chrono::steady_clock::time_point start_time = std::chrono::steady_clock::now();
     while (pangolin::ShouldQuit() == false) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -96,6 +99,13 @@ void showPointCloud(const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &
         glEnd();
         pangolin::FinishFrame();
         usleep(5000);   // sleep 5 ms
+
+        count++; // 计算帧率
+        if (count % 100 == 0){
+            std::chrono::steady_clock::time_point end_t = std::chrono::steady_clock::now();
+            std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(end_t-start_time);
+            std::cout << "frames per seconds:"<<count/time_span.count()<<std::endl;
+        }
     }
     return;
 }

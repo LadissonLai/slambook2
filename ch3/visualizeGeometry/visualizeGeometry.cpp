@@ -60,7 +60,8 @@ int main(int argc, char **argv) {
   glEnable(GL_DEPTH_TEST);
   pangolin::OpenGlRenderState s_cam(
     pangolin::ProjectionMatrix(1000, 600, 420, 420, 500, 300, 0.1, 1000),
-    pangolin::ModelViewLookAt(3, 3, 3, 0, 0, 0, pangolin::AxisY)
+    // pangolin::ModelViewLookAt(3, 3, 3, 0, 0, 0, pangolin::AxisY)
+    pangolin::ModelViewLookAt(0, 0, 3, 0, 0, 0, pangolin::AxisY)
   );
 
   const int UI_WIDTH = 500;

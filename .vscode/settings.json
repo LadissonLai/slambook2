@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "core": "cpp",
+        "geometry": "cpp",
+        "dense": "cpp",
+        "qr": "cpp",
+        "ctime": "cpp",
+        "ostream": "cpp",
+        "iosfwd": "cpp",
+        "chrono": "cpp",
+        "iostream": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp",
+        "initializer_list": "cpp",
+        "cmath": "cpp"
+    }
+}

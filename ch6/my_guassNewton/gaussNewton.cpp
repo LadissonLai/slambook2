@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 {
   double ar = 1.0, br = 2.0, cr = 1.0;  // 真实参数值
   double ae = 2.0, be = -1.0, ce = 5.0; // 估计参数值
+  // double ae = 20.0, be = -10.0, ce = 50.0; // 估计参数值
   int N = 100;                          // 数据点
   double w_sigma = 1.0;                 // 噪声Sigma值
   double inv_sigma = 1.0 / w_sigma;
@@ -48,6 +49,13 @@ int main(int argc, char **argv)
       H += inv_sigma * inv_sigma * J * J.transpose();
       b += -inv_sigma * inv_sigma * error * J;
 
+      // H是否可逆
+      Eigen::FullPivLU<Eigen::Matrix3d> lu(H);
+      if (lu.isInvertible())
+      {
+        std::cout << "<---> "<< i <<": H matrix is invertible!!!!" << std::endl;
+      }
+
       cost += error * error;
     }
 
@@ -55,7 +63,7 @@ int main(int argc, char **argv)
     Eigen::FullPivLU<Eigen::Matrix3d> lu(H);
     if (lu.isInvertible())
     {
-      std::cout << "H matrix is invertible!!!!" << std::endl;
+      std::cout << "<---> "<< iter <<": H matrix is invertible!!!!" << std::endl;
     }
 
     // 求解线性方程 Hx=b
